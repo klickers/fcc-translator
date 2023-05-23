@@ -188,4 +188,6 @@ suite("Unit Tests", () => {
         );
         done();
     });
+
+    //test("Highlight translation in Mangoes are my favorite fruit.");
 });
