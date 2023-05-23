@@ -41,6 +41,34 @@ suite("Unit Tests", () => {
         done();
     });
 
+    test("Translate The parking lot was full. to British English", function (done) {
+        assert.equal(
+            translator.translateToBritish("The parking lot was full."),
+            "The car park was full."
+        );
+        done();
+    });
+
+    test("Translate Like a high tech Rube Goldberg machine. to British English", function (done) {
+        assert.equal(
+            translator.translateToBritish(
+                "Like a high tech Rube Goldberg machine."
+            ),
+            "Like a high tech Heath Robinson device."
+        );
+        done();
+    });
+
+    test("Translate To play hooky means to skip class or work. to British English", function (done) {
+        assert.equal(
+            translator.translateToBritish(
+                "To play hooky means to skip class or work."
+            ),
+            "To bunk off means to skip class or work."
+        );
+        done();
+    });
+
     test("Translate No Mr. Bond, I expect you to die. to British English", function (done) {
         assert.equal(
             translator.translateToBritish("No Mr. Bond, I expect you to die."),

@@ -10,33 +10,50 @@ class Translator {
         return text;
     }
 
-    replaceCapitalizedWord(oldWord, newWord) {
-        if (oldWord != oldWord.toLowerCase())
-            oldWord = newWord.charAt(0).toUpperCase() + newWord.slice(1);
-        else oldWord = newWord;
-        return oldWord;
+    replaceWordInText(text, oldWord, newWord) {
+        if (!text.includes(oldWord))
+            text = text.replace(
+                oldWord.charAt(0).toUpperCase() + oldWord.slice(1),
+                newWord.charAt(0).toUpperCase() + newWord.slice(1)
+            );
+        else text = text.replace(oldWord, newWord);
+        return text;
     }
 
     amToBrit(text) {
-        let str = text.split(" ");
+        let lowercaseText = text.toLowerCase();
 
-        for (let i = 0; i < str.length; i++) {
-            let hanging = "";
-            if (str[i].match(/\W$/)) {
-                hanging = str[i].match(/\W$/)[0];
-                str[i] = str[i].substring(str[i], str[i].length - 1);
+        // american only
+        for (const [key, value] of Object.entries(americanOnly)) {
+            if (
+                lowercaseText.includes(key) &&
+                /[^a-zA-Z0-9]/.test(
+                    lowercaseText.charAt(lowercaseText.search(key) + key.length)
+                )
+            ) {
+                if (key.includes("rube goldberg"))
+                    text = text.replace(
+                        text.substring(
+                            lowercaseText.search(key),
+                            lowercaseText.search(key) + key.length
+                        ),
+                        value
+                    );
+                else text = this.replaceWordInText(text, key, value);
             }
-
-            let word = americanOnly[str[i].toLowerCase()];
-            let spelling = americanToBritishSpelling[str[i].toLowerCase()];
-            if (word) str[i] = this.replaceCapitalizedWord(str[i], word);
-            else if (spelling)
-                str[i] = this.replaceCapitalizedWord(str[i], spelling);
-
-            str[i] += hanging;
         }
 
-        return str.join(" ");
+        // spelling
+        for (const [key, value] of Object.entries(americanToBritishSpelling))
+            if (
+                lowercaseText.includes(key) &&
+                /[^a-zA-Z0-9]/.test(
+                    lowercaseText.charAt(lowercaseText.search(key) + key.length)
+                )
+            )
+                text = this.replaceWordInText(text, key, value);
+
+        return text;
     }
 
     amToBritTitles(text) {
