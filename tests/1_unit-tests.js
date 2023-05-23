@@ -13,6 +13,14 @@ suite("Unit Tests", () => {
         done();
     });
 
+    test("Translate I ate yogurt for breakfast. to British English", function (done) {
+        assert.equal(
+            translator.translate("I ate yogurt for breakfast."),
+            "I ate yoghurt for breakfast."
+        );
+        done();
+    });
+
     test("Translate No Mr. Bond, I expect you to die. to British English", function (done) {
         assert.equal(
             translator.translate("No Mr. Bond, I expect you to die."),
