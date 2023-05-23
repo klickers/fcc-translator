@@ -5,13 +5,13 @@ const britishOnly = require("./british-only.js");
 
 class Translator {
     translateToAmerican(text) {
-        if (/[\d]+.[\d]+/.test(text)) text = this.translateTime(text);
+        if (/[\d]+.[\d]+/.test(text)) text = this.translateTime(text, ".", ":");
         text = this.britToAm(text);
         return text;
     }
 
     translateToBritish(text) {
-        if (/[\d]+:[\d]+/.test(text)) text = this.translateTime(text);
+        if (/[\d]+:[\d]+/.test(text)) text = this.translateTime(text, ":", ".");
         text = this.amToBrit(text);
         return text;
     }
