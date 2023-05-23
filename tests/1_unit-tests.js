@@ -12,4 +12,12 @@ suite("Unit Tests", () => {
         );
         done();
     });
+
+    test("Translate No Mr. Bond, I expect you to die. to British English", function (done) {
+        assert.equal(
+            translator.translate("No Mr. Bond, I expect you to die."),
+            "No Mr Bond, I expect you to die."
+        );
+        done();
+    });
 });
