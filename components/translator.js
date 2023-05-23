@@ -4,9 +4,14 @@ const americanToBritishTitles = require("./american-to-british-titles.js");
 const britishOnly = require("./british-only.js");
 
 class Translator {
+    translateToAmerican(text) {
+        if (/[\d]+.[\d]+/.test(text)) text = this.translateTime(text);
+        text = this.britToAm(text);
+        return text;
+    }
+
     translateToBritish(text) {
-        if (text.includes(".")) text = this.amToBritTitles(text);
-        if (/[\d]+:[\d]+/.test(text)) text = this.amToBritTime(text);
+        if (/[\d]+:[\d]+/.test(text)) text = this.translateTime(text);
         text = this.amToBrit(text);
         return text;
     }
@@ -18,6 +23,32 @@ class Translator {
                 newWord.charAt(0).toUpperCase() + newWord.slice(1)
             );
         else text = text.replace(oldWord, newWord);
+        return text;
+    }
+
+    keySearch(obj, lowercaseText, text) {
+        for (const [key, value] of Object.entries(obj))
+            if (
+                lowercaseText.includes(key) &&
+                /[^a-zA-Z0-9]/.test(
+                    lowercaseText.charAt(lowercaseText.search(key) + key.length)
+                )
+            )
+                text = this.replaceWordInText(text, key, value);
+        return text;
+    }
+
+    valueSearch(obj, lowercaseText, text) {
+        for (const [key, value] of Object.entries(obj))
+            if (
+                lowercaseText.includes(value) &&
+                /[^a-zA-Z0-9]/.test(
+                    lowercaseText.charAt(
+                        lowercaseText.search(value) + value.length
+                    )
+                )
+            )
+                text = this.replaceWordInText(text, value, key);
         return text;
     }
 
@@ -45,31 +76,26 @@ class Translator {
         }
 
         // spelling
-        for (const [key, value] of Object.entries(americanToBritishSpelling))
-            if (
-                lowercaseText.includes(key) &&
-                /[^a-zA-Z0-9]/.test(
-                    lowercaseText.charAt(lowercaseText.search(key) + key.length)
-                )
-            )
-                text = this.replaceWordInText(text, key, value);
+        text = this.keySearch(americanToBritishSpelling, lowercaseText, text);
+        text = this.keySearch(americanToBritishTitles, lowercaseText, text);
 
         return text;
     }
 
-    amToBritTime(text) {
-        let americanTime = text.match(/[\d]+:[\d]+/)[0];
-        let britishTime = americanTime.replace(":", ".");
-        return text.replace(americanTime, britishTime);
+    britToAm(text) {
+        let lowercaseText = text.toLowerCase();
+
+        text = this.keySearch(britishOnly, lowercaseText, text);
+        text = this.valueSearch(americanToBritishSpelling, lowercaseText, text);
+        text = this.valueSearch(americanToBritishTitles, lowercaseText, text);
+
+        return text;
     }
 
-    amToBritTitles(text) {
-        let str = text.split(" ");
-        for (let i = 0; i < str.length; i++) {
-            let title = americanToBritishTitles[str[i].toLowerCase()];
-            if (title) str[i] = title.charAt(0).toUpperCase() + title.slice(1);
-        }
-        return str.join(" ");
+    translateTime(text, oldChar, newChar) {
+        let oldTime = text.match(/[\d]+[:.][\d]+/)[0];
+        let newTime = oldTime.replace(oldChar, newChar);
+        return text.replace(oldTime, newTime);
     }
 }
 
