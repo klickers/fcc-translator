@@ -7,7 +7,7 @@ let translator = new Translator();
 suite("Unit Tests", () => {
     test("Translate Mangoes are my favorite fruit. to British English", function (done) {
         assert.equal(
-            translator.translate("Mangoes are my favorite fruit."),
+            translator.translateToBritish("Mangoes are my favorite fruit."),
             "Mangoes are my favourite fruit."
         );
         done();
@@ -15,7 +15,7 @@ suite("Unit Tests", () => {
 
     test("Translate I ate yogurt for breakfast. to British English", function (done) {
         assert.equal(
-            translator.translate("I ate yogurt for breakfast."),
+            translator.translateToBritish("I ate yogurt for breakfast."),
             "I ate yoghurt for breakfast."
         );
         done();
@@ -23,7 +23,7 @@ suite("Unit Tests", () => {
 
     test("Translate No Mr. Bond, I expect you to die. to British English", function (done) {
         assert.equal(
-            translator.translate("No Mr. Bond, I expect you to die."),
+            translator.translateToBritish("No Mr. Bond, I expect you to die."),
             "No Mr Bond, I expect you to die."
         );
         done();

@@ -4,7 +4,7 @@ const americanToBritishTitles = require("./american-to-british-titles.js");
 const britishOnly = require("./british-only.js");
 
 class Translator {
-    translate(text) {
+    translateToBritish(text) {
         if (text.includes(".")) text = this.amToBritTitles(text);
         text = this.amToBritSpelling(text);
         return text;
