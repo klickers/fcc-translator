@@ -76,4 +76,12 @@ suite("Unit Tests", () => {
         );
         done();
     });
+
+    test("Translate Dr. Grosh will see you now. to British English", function (done) {
+        assert.equal(
+            translator.translateToBritish("Dr. Grosh will see you now."),
+            "Dr Grosh will see you now."
+        );
+        done();
+    });
 });
