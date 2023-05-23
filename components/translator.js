@@ -6,21 +6,36 @@ const britishOnly = require("./british-only.js");
 class Translator {
     translateToBritish(text) {
         if (text.includes(".")) text = this.amToBritTitles(text);
-        text = this.amToBritSpelling(text);
+        text = this.amToBrit(text);
         return text;
     }
 
-    amToBritSpelling(text) {
+    replaceCapitalizedWord(oldWord, newWord) {
+        if (oldWord != oldWord.toLowerCase())
+            oldWord = newWord.charAt(0).toUpperCase() + newWord.slice(1);
+        else oldWord = newWord;
+        return oldWord;
+    }
+
+    amToBrit(text) {
         let str = text.split(" ");
+
         for (let i = 0; i < str.length; i++) {
-            let spelling = americanToBritishSpelling[str[i].toLowerCase()];
-            if (spelling) {
-                if (str[i] != str[i].toLowerCase())
-                    str[i] =
-                        spelling.charAt(0).toUpperCase() + spelling.slice(1);
-                else str[i] = spelling;
+            let hanging = "";
+            if (str[i].match(/\W$/)) {
+                hanging = str[i].match(/\W$/)[0];
+                str[i] = str[i].substring(str[i], str[i].length - 1);
             }
+
+            let word = americanOnly[str[i].toLowerCase()];
+            let spelling = americanToBritishSpelling[str[i].toLowerCase()];
+            if (word) str[i] = this.replaceCapitalizedWord(str[i], word);
+            else if (spelling)
+                str[i] = this.replaceCapitalizedWord(str[i], spelling);
+
+            str[i] += hanging;
         }
+
         return str.join(" ");
     }
 

@@ -21,6 +21,26 @@ suite("Unit Tests", () => {
         done();
     });
 
+    test("Translate We had a party at my friend's condo. to British English", function (done) {
+        assert.equal(
+            translator.translateToBritish(
+                "We had a party at my friend's condo."
+            ),
+            "We had a party at my friend's flat."
+        );
+        done();
+    });
+
+    test("Translate Can you toss this in the trashcan for me? to British English", function (done) {
+        assert.equal(
+            translator.translateToBritish(
+                "Can you toss this in the trashcan for me?"
+            ),
+            "Can you toss this in the bin for me?"
+        );
+        done();
+    });
+
     test("Translate No Mr. Bond, I expect you to die. to British English", function (done) {
         assert.equal(
             translator.translateToBritish("No Mr. Bond, I expect you to die."),
