@@ -6,6 +6,7 @@ const britishOnly = require("./british-only.js");
 class Translator {
     translateToBritish(text) {
         if (text.includes(".")) text = this.amToBritTitles(text);
+        if (/[\d]+:[\d]+/.test(text)) text = this.amToBritTime(text);
         text = this.amToBrit(text);
         return text;
     }
@@ -54,6 +55,12 @@ class Translator {
                 text = this.replaceWordInText(text, key, value);
 
         return text;
+    }
+
+    amToBritTime(text) {
+        let americanTime = text.match(/[\d]+:[\d]+/)[0];
+        let britishTime = americanTime.replace(":", ".");
+        return text.replace(americanTime, britishTime);
     }
 
     amToBritTitles(text) {

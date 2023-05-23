@@ -84,4 +84,12 @@ suite("Unit Tests", () => {
         );
         done();
     });
+
+    test("Translate Lunch is at 12:15 today. to British English", function (done) {
+        assert.equal(
+            translator.translateToBritish("Lunch is at 12:15 today."),
+            "Lunch is at 12.15 today."
+        );
+        done();
+    });
 });
