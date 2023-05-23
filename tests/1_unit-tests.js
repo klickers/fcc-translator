@@ -8,7 +8,7 @@ suite("Unit Tests", () => {
     test("Translate Mangoes are my favorite fruit. to British English", function (done) {
         assert.equal(
             translator.translateToBritish("Mangoes are my favorite fruit."),
-            "Mangoes are my favourite fruit."
+            `Mangoes are my <span class="highlight">favourite</span> fruit.`
         );
         done();
     });
@@ -16,7 +16,7 @@ suite("Unit Tests", () => {
     test("Translate I ate yogurt for breakfast. to British English", function (done) {
         assert.equal(
             translator.translateToBritish("I ate yogurt for breakfast."),
-            "I ate yoghurt for breakfast."
+            `I ate <span class="highlight">yoghurt</span> for breakfast.`
         );
         done();
     });
@@ -26,7 +26,7 @@ suite("Unit Tests", () => {
             translator.translateToBritish(
                 "We had a party at my friend's condo."
             ),
-            "We had a party at my friend's flat."
+            `We had a party at my friend's <span class="highlight">flat</span>.`
         );
         done();
     });
@@ -36,7 +36,7 @@ suite("Unit Tests", () => {
             translator.translateToBritish(
                 "Can you toss this in the trashcan for me?"
             ),
-            "Can you toss this in the bin for me?"
+            `Can you toss this in the <span class="highlight">bin</span> for me?`
         );
         done();
     });
@@ -44,7 +44,7 @@ suite("Unit Tests", () => {
     test("Translate The parking lot was full. to British English", function (done) {
         assert.equal(
             translator.translateToBritish("The parking lot was full."),
-            "The car park was full."
+            `The <span class="highlight">car park</span> was full.`
         );
         done();
     });
@@ -54,7 +54,7 @@ suite("Unit Tests", () => {
             translator.translateToBritish(
                 "Like a high tech Rube Goldberg machine."
             ),
-            "Like a high tech Heath Robinson device."
+            `Like a high tech <span class="highlight">Heath Robinson device</span>.`
         );
         done();
     });
@@ -64,7 +64,7 @@ suite("Unit Tests", () => {
             translator.translateToBritish(
                 "To play hooky means to skip class or work."
             ),
-            "To bunk off means to skip class or work."
+            `To <span class="highlight">bunk off</span> means to skip class or work.`
         );
         done();
     });
@@ -72,7 +72,7 @@ suite("Unit Tests", () => {
     test("Translate No Mr. Bond, I expect you to die. to British English", function (done) {
         assert.equal(
             translator.translateToBritish("No Mr. Bond, I expect you to die."),
-            "No Mr Bond, I expect you to die."
+            `No <span class="highlight">Mr</span> Bond, I expect you to die.`
         );
         done();
     });
@@ -80,7 +80,7 @@ suite("Unit Tests", () => {
     test("Translate Dr. Grosh will see you now. to British English", function (done) {
         assert.equal(
             translator.translateToBritish("Dr. Grosh will see you now."),
-            "Dr Grosh will see you now."
+            `<span class="highlight">Dr</span> Grosh will see you now.`
         );
         done();
     });
@@ -88,7 +88,7 @@ suite("Unit Tests", () => {
     test("Translate Lunch is at 12:15 today. to British English", function (done) {
         assert.equal(
             translator.translateToBritish("Lunch is at 12:15 today."),
-            "Lunch is at 12.15 today."
+            `Lunch is at <span class="highlight">12.15</span> today.`
         );
         done();
     });
@@ -98,7 +98,7 @@ suite("Unit Tests", () => {
             translator.translateToAmerican(
                 "We watched the footie match for a while."
             ),
-            "We watched the soccer match for a while."
+            `We watched the <span class="highlight">soccer</span> match for a while.`
         );
         done();
     });
@@ -108,7 +108,7 @@ suite("Unit Tests", () => {
             translator.translateToAmerican(
                 "Paracetamol takes up to an hour to work."
             ),
-            "Tylenol takes up to an hour to work."
+            `<span class="highlight">Tylenol</span> takes up to an hour to work.`
         );
         done();
     });
@@ -116,7 +116,7 @@ suite("Unit Tests", () => {
     test("Translate First, caramelise the onions. to American English", function (done) {
         assert.equal(
             translator.translateToAmerican("First, caramelise the onions."),
-            "First, caramelize the onions."
+            `First, <span class="highlight">caramelize</span> the onions.`
         );
         done();
     });
@@ -126,7 +126,7 @@ suite("Unit Tests", () => {
             translator.translateToAmerican(
                 "I spent the bank holiday at the funfair."
             ),
-            "I spent the public holiday at the carnival."
+            `I spent the <span class="highlight">public holiday</span> at the <span class="highlight">carnival</span>.`
         );
         done();
     });
@@ -136,7 +136,7 @@ suite("Unit Tests", () => {
             translator.translateToAmerican(
                 "I had a bicky then went to the chippy."
             ),
-            "I had a cookie then went to the fish-and-chip shop."
+            `I had a <span class="highlight">cookie</span> then went to the <span class="highlight">fish-and-chip shop</span>.`
         );
         done();
     });
@@ -146,7 +146,7 @@ suite("Unit Tests", () => {
             translator.translateToAmerican(
                 "I've just got bits and bobs in my bum bag."
             ),
-            "I've just got odds and ends in my fanny pack."
+            `I've just got <span class="highlight">odds and ends</span> in my <span class="highlight">fanny pack</span>.`
         );
         done();
     });
@@ -156,7 +156,7 @@ suite("Unit Tests", () => {
             translator.translateToAmerican(
                 "The car boot sale at Boxted Airfield was called off."
             ),
-            "The swap meet at Boxted Airfield was called off."
+            `The <span class="highlight">swap meet</span> at Boxted Airfield was called off.`
         );
         done();
     });
@@ -164,7 +164,7 @@ suite("Unit Tests", () => {
     test("Translate Have you met Mrs Kalyani? to American English", function (done) {
         assert.equal(
             translator.translateToAmerican("Have you met Mrs Kalyani?"),
-            "Have you met Mrs. Kalyani?"
+            `Have you met <span class="highlight">Mrs.</span> Kalyani?`
         );
         done();
     });
@@ -174,7 +174,7 @@ suite("Unit Tests", () => {
             translator.translateToAmerican(
                 "Prof Joyner of King's College, London."
             ),
-            "Prof. Joyner of King's College, London."
+            `<span class="highlight">Prof.</span> Joyner of King's College, London.`
         );
         done();
     });
@@ -184,10 +184,44 @@ suite("Unit Tests", () => {
             translator.translateToAmerican(
                 "Tea time is usually around 4 or 4.30."
             ),
-            "Tea time is usually around 4 or 4:30."
+            `Tea time is usually around 4 or <span class="highlight">4:30</span>.`
         );
         done();
     });
 
-    //test("Highlight translation in Mangoes are my favorite fruit.");
+    test("Highlight translation in Mangoes are my favorite fruit.", function (done) {
+        assert.equal(
+            translator.translateToBritish("Mangoes are my favorite fruit."),
+            `Mangoes are my <span class="highlight">favourite</span> fruit.`
+        );
+        done();
+    });
+
+    test("Highlight translation in I ate yogurt for breakfast.", function (done) {
+        assert.equal(
+            translator.translateToBritish("I ate yogurt for breakfast."),
+            `I ate <span class="highlight">yoghurt</span> for breakfast.`
+        );
+        done();
+    });
+
+    test("Highlight translation in We watched the footie match for a while.", function (done) {
+        assert.equal(
+            translator.translateToAmerican(
+                "We watched the footie match for a while."
+            ),
+            `We watched the <span class="highlight">soccer</span> match for a while.`
+        );
+        done();
+    });
+
+    test("Highlight translation in Paracetamol takes up to an hour to work.", function (done) {
+        assert.equal(
+            translator.translateToAmerican(
+                "Paracetamol takes up to an hour to work."
+            ),
+            `<span class="highlight">Tylenol</span> takes up to an hour to work.`
+        );
+        done();
+    });
 });

@@ -20,9 +20,15 @@ class Translator {
         if (!text.includes(oldWord))
             text = text.replace(
                 oldWord.charAt(0).toUpperCase() + oldWord.slice(1),
-                newWord.charAt(0).toUpperCase() + newWord.slice(1)
+                `<span class="highlight">${
+                    newWord.charAt(0).toUpperCase() + newWord.slice(1)
+                }</span>`
             );
-        else text = text.replace(oldWord, newWord);
+        else
+            text = text.replace(
+                oldWord,
+                `<span class="highlight">${newWord}</span>`
+            );
         return text;
     }
 
@@ -69,7 +75,7 @@ class Translator {
                             lowercaseText.search(key),
                             lowercaseText.search(key) + key.length
                         ),
-                        value
+                        `<span class="highlight">${value}</span>`
                     );
                 else text = this.replaceWordInText(text, key, value);
             }
@@ -95,7 +101,10 @@ class Translator {
     translateTime(text, oldChar, newChar) {
         let oldTime = text.match(/[\d]+[:.][\d]+/)[0];
         let newTime = oldTime.replace(oldChar, newChar);
-        return text.replace(oldTime, newTime);
+        return text.replace(
+            oldTime,
+            `<span class="highlight">${newTime}</span>`
+        );
     }
 }
 
